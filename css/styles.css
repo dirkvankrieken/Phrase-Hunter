@@ -6,11 +6,11 @@
 :root {
   --color-win: #78CF82;
   --color-lose: #D94545;
-  --color-start: #5b85b7;
+  --color-start: #2fbf91;
   --color-neutral: #445069;
-  --color-neutral-light: #D2D2D2;
-  --color-keys: #37474F;
-  --color-keys-light: #E5E5E5;
+  --color-neutral-light: #B1DD25;
+  --color-keys: #363735;
+  --color-keys-light: #beeb9e;
   --font-size-large: 60px;
   --font-size-medium: 20px;
   --transition: all .2s ease-in-out;
@@ -25,6 +25,7 @@
 
 body {
   justify-content: space-evenly;
+  background: #F9FFED;
   flex-direction: column;
   display: flex;
   height: 100vh;
@@ -86,7 +87,7 @@ button {
 /* Title */
 
 .header {
-  color: #3a3f58;
+  color: #0d3403;
 }
 
 
@@ -111,7 +112,7 @@ button {
 
 .show {
   color: #fff;
-  background-color: #4ac0d5;
+  background-color: #39ae5e;
   font-size: 20px;
   height: 65px;
   width: 65px;
@@ -179,7 +180,7 @@ button {
 }
 
 .start {
-  background-color: #3a3f58;
+  background-color: #638764;
 }
 
 .start a {
