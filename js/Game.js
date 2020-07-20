@@ -87,25 +87,25 @@ const Game = class {
     */
     gameOver(wonorlost) {
         let overlay = document.querySelector('#overlay');
-        overlay.style.display = 'block';
+        overlay.removeAttribute('style');
         document.querySelectorAll('.letter').forEach(liLetter => {
             liLetter.classList.remove('animate__animated', 'animate__tada', 'animate__zoomIn');
         })
         if (wonorlost === 'win') {
             document.querySelector('#game-over-message').innerHTML = 'You Won!';
             if (overlay.classList.contains('lose'))
-            overlay.classList.replace('lose', 'win');
+                overlay.classList.replace('lose', 'win');
             else if (overlay.classList.contains('start')) {
-            overlay.classList.replace('start', 'win');
+                overlay.classList.replace('start', 'win');
             }
 
         } else {
             document.querySelector('#game-over-message').innerHTML = 'You lost!';
             overlay.classList.replace('start', 'lose');
             if (overlay.classList.contains('win'))
-            overlay.classList.replace('win', 'lose');
+                overlay.classList.replace('win', 'lose');
             else if (overlay.classList.contains('start')) {
-            overlay.classList.replace('start', 'lose');
+                overlay.classList.replace('start', 'lose');
             }
         }
     }
