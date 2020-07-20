@@ -46,8 +46,8 @@ const Game = class {
             keyOfClickedLetter.classList.add('wrong');
         }
         if (this.checkForWin()) {
-            let win = 'win';
-            this.gameOver(win);
+            let win = true;
+            this.gameOver(true);
         }
 
     }
@@ -62,8 +62,7 @@ const Game = class {
         let lives = document.querySelectorAll('.tries');
         lives[lives.length - this.missed].innerHTML = `<img src="images/lostHeart.png" alt="Heart Icon" height="35" width="30"></img>`;
         if (this.missed === 5) {
-            let lost = 'lost';
-            this.gameOver(lost);
+            this.gameOver(false);
         }
 
     }
@@ -85,14 +84,17 @@ const Game = class {
     * Displays game over message
     * @param {boolean} gameWon - Whether or not the user won the game
     */
-    gameOver(wonorlost) {
+    gameOver(win) {
         let overlay = document.querySelector('#overlay');
+        let gameOverMessage = document.querySelector('#game-over-message');
+        gameOverMessage.classList.remove('animate__animated', 'animate__zoomIn', 'animate__delay');
         overlay.removeAttribute('style');
         document.querySelectorAll('.letter').forEach(liLetter => {
-            liLetter.classList.remove('animate__animated', 'animate__tada', 'animate__zoomIn');
+            liLetter.classList.remove('animate__animated', 'animate__zoomIn');
         })
-        if (wonorlost === 'win') {
-            document.querySelector('#game-over-message').innerHTML = 'You Won!';
+        if (win) {
+            gameOverMessage.innerHTML = 'You Won!';
+            gameOverMessage.classList.add('animate__animated', 'animate__zoomIn', 'animate__delay');
             if (overlay.classList.contains('lose'))
                 overlay.classList.replace('lose', 'win');
             else if (overlay.classList.contains('start')) {
@@ -100,8 +102,9 @@ const Game = class {
             }
 
         } else {
-            document.querySelector('#game-over-message').innerHTML = 'You lost!';
+            gameOverMessage.innerHTML = 'You lost!';
             overlay.classList.replace('start', 'lose');
+            gameOverMessage.classList.add('animate__animated', 'animate__zoomIn', 'animate__delay');
             if (overlay.classList.contains('win'))
                 overlay.classList.replace('win', 'lose');
             else if (overlay.classList.contains('start')) {
