@@ -60,9 +60,6 @@ document.querySelector('#btn__reset').addEventListener('click', () => {
     newGame.startGame();
 });
 
-// Temporary auto start of game
-newGame.startGame();
-
 //Event listener that listens for clicks on the on screen keyboard buttons
 document.querySelector('#qwerty').addEventListener('click', onScreenKeyClick, false);
 

@@ -41,15 +41,14 @@ const Game = class {
         if (this.activePhrase.checkLetter(clickedLetter)) {
             this.activePhrase.showMatchedLetter(clickedLetter);
             keyOfClickedLetter.classList.add('chosen');
+            if (this.checkForWin()) {
+                let win = true;
+                this.gameOver(true);
+            }    
         } else {
             this.removeLife();
             keyOfClickedLetter.classList.add('wrong');
         }
-        if (this.checkForWin()) {
-            let win = true;
-            this.gameOver(true);
-        }
-
     }
 
     /**

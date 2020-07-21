@@ -4,7 +4,6 @@
 
 const ul = document.querySelector('#phrase ul');
 
-
 const Phrase = class {
     constructor(phrase) {
         this.phrase = phrase.toLowerCase();
@@ -22,6 +21,7 @@ const Phrase = class {
                 li.classList.add('space');
             } else {
                 li.classList.add('hide', 'letter', this.phrase[i]);
+                li.innerHTML = this.phrase[i];
             }
             ul.appendChild(li);
         }
@@ -50,11 +50,8 @@ const Phrase = class {
         document.querySelectorAll(`.${letter}`).forEach(liLetter => {
             liLetter.classList.replace('hide', 'show');
             liLetter.classList.remove('animate__animated', 'animate__zoomIn');
-
             liLetter.classList.add('animate__animated', 'animate__tada');
-            liLetter.innerHTML = letter;
         });
-
     };
 }
 
