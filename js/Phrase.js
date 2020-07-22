@@ -32,7 +32,6 @@ const Phrase = class {
     * @param (string) letter - Letter to check
     */
     checkLetter(letter) {
-        let ok = false;
         const phraseArray = newGame.activePhrase.phrase.split('');
         for (let i = 0; i < phraseArray.length; i++) {
             if (phraseArray[i] === letter) {

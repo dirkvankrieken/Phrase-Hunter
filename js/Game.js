@@ -21,12 +21,21 @@ const Game = class {
         document.querySelector('#overlay').style.display = 'none';
         this.activePhrase = this.getRandomPhrase();
         this.activePhrase.addPhraseToDisplay();
+        this.newGame = new Game();
+
     }
+
+    /**
+     * Gets a random phrase from the phrases array
+     */
 
     getRandomPhrase() {
         return this.phrases[Math.floor(Math.random() * (this.phrases.length))];
     }
 
+    /**
+     * Function that handles the click letter interaction
+     */
     handleInteraction(clickedLetter) {
         const allKeys = document.querySelectorAll('.key');
         let keyOfClickedLetter;
@@ -42,7 +51,6 @@ const Game = class {
             this.activePhrase.showMatchedLetter(clickedLetter);
             keyOfClickedLetter.classList.add('chosen');
             if (this.checkForWin()) {
-                let win = true;
                 this.gameOver(true);
             }    
         } else {

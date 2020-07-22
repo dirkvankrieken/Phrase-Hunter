@@ -7,7 +7,7 @@
  */
 
 let disabledKeys = [];
-const newGame = new Game();
+let newGame;
 
 /**
  * Functions
@@ -16,9 +16,9 @@ const newGame = new Game();
 // Function that runs when a key is pressed. Pressed key is send to the handleinteraction method of the game class
 const keyPressFunction = (e) => {
     let pressedKey = (e.key);
-    let regEx = /[a-z]/;
+    let regEx = /^[A-Za-z]+$/;
 
-    if (regEx.test(pressedKey) && !disabledKeys.includes(pressedKey) && pressedKey !== 'Enter' && document.querySelector('#overlay').style.display === 'none') {
+    if (pressedKey.length === 1 && regEx.test(pressedKey) && !disabledKeys.includes(pressedKey) && pressedKey !== 'Enter' && document.querySelector('#overlay').style.display === 'none') {
         disabledKeys.push(pressedKey);
         newGame.handleInteraction(pressedKey);
     }
@@ -36,6 +36,8 @@ const onScreenKeyClick = (e) => {
 const resetGame = () => {
     const oldDisplayedPhrase = document.querySelector('#phrase ul');
     oldDisplayedPhrase.textContent = '';
+    newGame = new Game(newGame);
+    newGame.startGame();
     newGame.missed = 0;
     let lives = document.querySelectorAll('.tries');
     for (let i = 0; i < lives.length; i++) {
@@ -57,11 +59,10 @@ const resetGame = () => {
 // Event listener that listens for click on the start game button 
 document.querySelector('#btn__reset').addEventListener('click', () => {
     resetGame();
-    newGame.startGame();
 });
 
 //Event listener that listens for clicks on the on screen keyboard buttons
 document.querySelector('#qwerty').addEventListener('click', onScreenKeyClick, false);
 
 // Event listener that listens for keyboard input
-document.addEventListener('keypress', keyPressFunction, false);
+document.addEventListener('keyup', keyPressFunction, false);
